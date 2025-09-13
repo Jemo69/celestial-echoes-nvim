@@ -1,6 +1,13 @@
 -- Celestial Echoes Dark Theme for Neovim
 -- A dark theme inspired by the cosmic night sky
 
+vim.cmd("hi clear")
+if vim.fn.exists("syntax_on") then
+  vim.cmd("syntax reset")
+end
+
+vim.g.colors_name = "celestial-echoes-dark"
+
 local colors = {
     bg = "#050615",
     fg = "#d12e80",
@@ -20,26 +27,6 @@ local colors = {
     bright_magenta = "#bb9af7",
     bright_cyan = "#7dcfff",
     bright_white = "#c0caf5",
-}
-
-local theme = {
-    normal = {
-        a = { fg = colors.bg, bg = colors.blue, gui = "bold" },
-        b = { fg = colors.fg, bg = colors.gray },
-        c = { fg = colors.fg, bg = colors.bg }
-    },
-    insert = {
-        a = { fg = colors.bg, bg = colors.green, gui = "bold" },
-    },
-    visual = {
-        a = { fg = colors.bg, bg = colors.magenta, gui = "bold" },
-    },
-    replace = {
-        a = { fg = colors.bg, bg = colors.red, gui = "bold" },
-    },
-    command = {
-        a = { fg = colors.bg, bg = colors.yellow, gui = "bold" },
-    },
 }
 
 -- Syntax highlighting groups
@@ -121,10 +108,57 @@ local editor = {
     WildMenu = { fg = colors.fg, bg = colors.blue },
 }
 
--- Return the theme
-return {
-    colors = colors,
-    theme = theme,
-    syntax = syntax,
-    editor = editor
+local function set_highlights(highlights)
+  for group, settings in pairs(highlights) do
+    vim.api.nvim_set_hl(0, group, settings)
+  end
+end
+
+set_highlights(editor)
+set_highlights(syntax)
+
+-- Lualine theme
+-- To use this, you would need to have lualine installed and configure it like this:
+-- require('lualine').setup({
+--   options = {
+--     -- ... other options
+--     theme = {
+--       normal = {
+--         a = { fg = colors.bg, bg = colors.blue, gui = "bold" },
+--         b = { fg = colors.fg, bg = colors.gray },
+--         c = { fg = colors.fg, bg = colors.bg }
+--       },
+--       insert = {
+--         a = { fg = colors.bg, bg = colors.green, gui = "bold" },
+--       },
+--       visual = {
+--         a = { fg = colors.bg, bg = colors.magenta, gui = "bold" },
+--       },
+--       replace = {
+--         a = { fg = colors.bg, bg = colors.red, gui = "bold" },
+--       },
+--       command = {
+--         a = { fg = colors.bg, bg = colors.yellow, gui = "bold" },
+--       },
+--     }
+--   }
+-- })
+local theme = {
+    normal = {
+        a = { fg = colors.bg, bg = colors.blue, gui = "bold" },
+        b = { fg = colors.fg, bg = colors.gray },
+        c = { fg = colors.fg, bg = colors.bg }
+    },
+    insert = {
+        a = { fg = colors.bg, bg = colors.green, gui = "bold" },
+    },
+    visual = {
+        a = { fg = colors.bg, bg = colors.magenta, gui = "bold" },
+    },
+    replace = {
+        a = { fg = colors.bg, bg = colors.red, gui = "bold" },
+    },
+    command = {
+        a = { fg = colors.bg, bg = colors.yellow, gui = "bold" },
+    },
 }

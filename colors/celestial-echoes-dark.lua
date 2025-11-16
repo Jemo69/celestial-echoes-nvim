@@ -53,6 +53,10 @@ local syntax = {
     Macro = { fg = colors.cyan },
     Type = { fg = colors.yellow },
     Structure = { fg = colors.yellow },
+    StorageClass = { fg = colors.magenta, italic = true },
+    Variable = { fg = colors.white },
+    Class = { fg = colors.yellow },
+    Method = { fg = colors.blue },
     Special = { fg = colors.blue },
     SpecialChar = { fg = colors.cyan },
     Tag = { fg = colors.blue },
@@ -62,6 +66,29 @@ local syntax = {
     Underlined = { underline = true },
     Error = { fg = colors.red },
     Todo = { fg = colors.yellow, bold = true },
+}
+
+-- Markdown highlighting
+local markdown = {
+    markdownH1 = { fg = colors.red, bold = true },
+    markdownH2 = { fg = colors.yellow, bold = true },
+    markdownH3 = { fg = colors.blue, bold = true },
+    markdownH4 = { fg = colors.green, bold = true },
+    markdownH5 = { fg = colors.magenta, bold = true },
+    markdownH6 = { fg = colors.cyan, bold = true },
+    markdownBold = { fg = colors.bright_yellow, bold = true },
+    markdownItalic = { fg = colors.bright_magenta, italic = true },
+    markdownCode = { fg = colors.green, bg = colors.black },
+    markdownLink = { fg = colors.cyan, underline = true },
+}
+
+-- HTML/JSX highlighting
+local html = {
+    htmlTag = { fg = colors.blue },
+    htmlEndTag = { fg = colors.blue },
+    htmlTagName = { fg = colors.red, bold = true },
+    htmlArg = { fg = colors.yellow },
+    htmlScriptTag = { fg = colors.magenta },
 }
 
 -- Editor highlighting groups
@@ -116,6 +143,8 @@ end
 
 set_highlights(editor)
 set_highlights(syntax)
+set_highlights(markdown)
+set_highlights(html)
 
 -- Lualine theme
 -- To use this, you would need to have lualine installed and configure it like this:
